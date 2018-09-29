@@ -6,6 +6,17 @@ class App extends React.Component {
   state = {
     date: new Date()
   };
+  isLeapYear(year) {
+    return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  }
+  daysOfMonth(month, year) {
+    const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (month === 2) {
+      return this.isLeapYear(year) ? 29 : 28;
+    } else {
+      return days[month];
+    }
+  }
   render() {
     const monthNames = [
       "January",
@@ -21,14 +32,21 @@ class App extends React.Component {
       "November",
       "December"
     ];
-    const dateString = this.state.date.toDateString();
     const month = this.state.date.getMonth();
+    const year = this.state.date.getFullYear();
     const monthName = monthNames[month];
+
+    const daysOfMonth = Array(this.daysOfMonth(month, year))
+      .fill()
+      .map((v, i) => <li>{i + 1}</li>);
 
     return (
       <div className="App">
-        <h1>{monthName}</h1>
-        <h2>Start editing to see some magic happen!</h2>
+        <h1>
+          {monthName} {year}
+        </h1>
+        <p>There are {this.daysOfMonth(month, year)} days in this month</p>
+        <ul>{daysOfMonth}</ul>
       </div>
     );
   }
