@@ -39,7 +39,7 @@ class App extends React.Component {
     const daysOfMonth = Array(this.daysOfMonth(month, year))
       .fill()
       .map((v, i) => (
-        <li class="day-of-month" key={i + 1}>
+        <li className="day-of-month" key={i}>
           {i + 1}
         </li>
       ));
@@ -50,7 +50,7 @@ class App extends React.Component {
           {monthName} {year}
         </h1>
         <p>There are {this.daysOfMonth(month, year)} days in this month</p>
-        <ul class="current-month">{daysOfMonth}</ul>
+        <ul className="current-month">{daysOfMonth}</ul>
       </div>
     );
   }
