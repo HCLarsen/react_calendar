@@ -5,15 +5,19 @@
 
 ul.current-month {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 li.day-of-month {
-  width: 14%;
+  width: 13%;
   height: 0;
-  padding-top: 5%;
+  padding-top: 4%;
   padding-bottom: 9%;
   border: 1px solid black;
   text-align: center;
+  font-size: 6vw;
 }
 
 li.current-month {
