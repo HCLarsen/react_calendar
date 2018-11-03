@@ -4,9 +4,17 @@ import { isLeapYear, daysInMonth, monthNames } from "./calendar_functions";
 import "./styles.css";
 
 class App extends React.Component {
-  state = {
-    date: new Date()
-  };
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  day(date, month) {
+    return (
+      <li className={"day-of-month " + month} key={date}>
+        {date}
+      </li>
+    );
+  }
   render() {
     const month = this.state.date.getMonth();
     const year = this.state.date.getFullYear();
@@ -21,35 +29,24 @@ class App extends React.Component {
     const offset = daysInMonth(month - 1, year) - lastDayOfLastMonth.getDay();
     const daysOfLastMonth = Array(firstDayOfMonth.getDay())
       .fill()
-      .map((v, i) => (
-        <li className="day-of-month other-month" key={i + offset}>
-          {i + offset}
-        </li>
-      ));
+      .map((v, i) => this.day(i + offset, "other-month"));
 
     const daysOfThisMonth = Array(daysInMonth(month, year))
       .fill()
-      .map((v, i) => (
-        <li className="day-of-month current-month" key={i + 1}>
-          {i + 1}
-        </li>
-      ));
+      .map((v, i) => this.day(i + 1, "current-month"));
 
     const lastDayOfMonth = new Date(year, month, daysInMonth(month, year));
     const daysOfNextMonth = Array(6 - lastDayOfMonth.getDay())
       .fill()
-      .map((v, i) => (
-        <li className="day-of-month other-month" key={i + 1}>
-          {i + 1}
-        </li>
-      ));
+      .map((v, i) => this.day(i + 1, "other-month"));
 
     return (
       <div className="App">
         <nav>
-          {monthName} {year}
+          <h1>
+            {monthName} {year}
+          </h1>
         </nav>
-        <p>There are {daysInMonth(month, year)} days in this month</p>
         <ul className="current-month">
           {daysOfLastMonth}
           {daysOfThisMonth}
