@@ -3,6 +3,17 @@
   text-align: center;
 }
 
+nav {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.month-name {
+}
+
+.year {
+}
+
 ul.current-month {
   list-style-type: none;
   display: flex;
@@ -28,4 +39,8 @@ li.current-month {
 li.other-month {
   color: grey;
   background-color: lightgray;
+}
+
+svg.month-nav {
+  vertical-align: middle;
 }
